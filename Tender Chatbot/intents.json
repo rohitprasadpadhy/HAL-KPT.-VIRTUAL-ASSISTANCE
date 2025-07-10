@@ -1,0 +1,268 @@
+{
+  "intents": [
+    {
+      "tag": "purchase_requisition",
+      "patterns": [
+        "what is purchase requisition",
+        "define purchase requisition",
+        "purchase requisition meaning"
+      ],
+      "responses": [
+        "Purchase Requisition (MPR) is an internal request to procure materials in specific quantities within a specific timeframe. It is raised by the user department and approved before converting to a Purchase Order. It helps organizations plan and control purchases efficiently."
+      ]
+    },
+    {
+      "tag": "purchase_requisition_types",
+      "patterns": [
+        "types of purchase requisition",
+        "different types of pr",
+        "kinds of purchase requisition",
+        "pr types"
+      ],
+      "responses": [
+        "Here are the main types of Purchase Requisitions (PR):<br><br>1. <b>Material Purchase Request (MPR)</b> - For raw materials, stock items, consumables, etc.<br>2. <b>Service Purchase Request (SPR)</b> - For services like maintenance, software, consultants.<br>3. <b>Capital Purchase Request (CPR)</b> - For machinery, infrastructure, or long-term assets.<br>4. <b>Petty Purchase Request (PPR)</b> - For small, low-cost purchases.<br>5. <b>Urgent Purchase Request (UPR)</b> - For time-sensitive or emergency procurements."
+      ]
+    },
+    {
+      "tag": "mpr_creation_process",
+      "patterns": [
+        "mpr steps",
+        "mpr creation process",
+        "steps to create mpr",
+        "how to create purchase requisition",
+        "purchase requisition procedure"
+      ],
+      "responses": [
+        "To Create the Purchase Requisition  follow the steps below:<br><br><b>🔹 Navigation Path:</b> IFS Distribution → Purchasing → Purchase Requisition → Purchase Requisition screen<br><br><b> 1. Press New Button.",
+        "2. Select the Prefix for Purchase Requisition number generation from the List of Values (LOV).",
+        "3. Select the Order Code from the LOV: 0 for Tender and 1 for Normal order. (Default is 1 if not selected).",
+        "4. Select Requisitioner from the LOV and the corresponding department will be displayed.",
+        "5. Select Internal Destination from the LOV.",
+        "6. Save the Purchase Requisition. A new requisition number will be generated based on the selected or default prefix.",
+        "7. Purchase Requisition will now be in 'Planned' status.",
+        "8. Right-click (RMB) on the Header and select Pre-posting.",
+        "9. Select Project and Project Class from the LOV and click OK.",
+        "10. Enter Document Text at header level using RMB. Click New under Output Type, search for MPR%, and select the output format.",
+        "11. Enter additional header notes like MPR REA PT (Reason), MPR SPL NT (Special Notes), MPR TM-CON (Terms & Conditions), MPR-DT REQ (Required Date), MPR-PER (Landed Cost %), MPR_BGTCOD (Budget Code), MPR_SOURCE (Source Type), MPR_SUPLDT (Supplier Lead Time).",
+        "12. Go to PR Line tab and click New. Enter the Part Number from the LOV. The LOV shows only parts with supplier-part relationships.",
+        "13. Enter the Quantity required.",
+        "14. Set the Wanted Receipt Date. The system will auto-pick primary supplier and base price or allow manual selection.",
+        "15. If Unit Price needs to be changed, update it in the 'Supplier for Purchase Part Price' section.",
+        "16. Enter additional records in PR Line as required by repeating steps 12 to 15.",
+        "17. PR Lines cannot be deleted, only canceled. Use RMB on line -> Cancel Requisition Line.",
+        "18. Make the Supplier Active/Inactive for the first line under 'Supplier for Purchase Part'.",
+        "19. RMB on Header and click 'Make Supplier Active'. This updates the status for all lines in the MPR."
+      ]
+    },
+    {
+      "tag": "mpr_prerequisites",
+      "patterns": [
+        "pre requisites for purchase requisition",
+        "what are the requirements before MPR",
+        "what to check before creating mpr",
+        "conditions before raising purchase requisition",
+        "mpr pre steps"
+      ],
+      "responses": [
+        "Before initiating a Purchase Requisition (MPR), the following pre-requisites must be fulfilled:<br><br>✔️ Adequacy QJS and Price estimation PJS sheets must be prepared separately.<br><br>Additionally:<br>1️⃣ The Requisitioner must be entered in the Requisitioners tab of the Basic Data for Purchasing window.<br>2️⃣ The Purchase Part must exist along with the corresponding Inventory Part.<br>3️⃣ A valid Supplier-Part Relationship must exist for procuring the item from the desired supplier."
+      ]
+    },
+    {
+      "tag": "create_inventory_part",
+      "patterns": [
+        "how to create inventory part",
+        "steps to create inventory part",
+        "create new inventory part",
+        "inventory part creation",
+        "add inventory part"
+      ],
+      "responses": [
+        "Here are the steps to create an Inventory Part:<br><br>1️⃣ Go to the <b>Inventory Part</b> window and press <b>New</b>.<br>2️⃣ Enter the <b>Part Number</b>, <b>Part Description</b>, and <b>Default Purchase U/M (Unit of Measure)</b>.<br>3️⃣ Click <b>Save</b> to complete the creation."
+      ]
+    },
+    {
+      "tag": "create_supplier_purchase_part",
+      "patterns": [
+        "how to create supplier for purchase part",
+        "add supplier for purchase part",
+        "steps to add supplier",
+        "create supplier part link",
+        "supplier for purchase part creation"
+      ],
+      "responses": [
+        "Here's how to create a Supplier for a Purchase Part:<br><br>🔸 Navigate to: <b>Purchasing → Purchase Part → Supplier for Purchase Part</b><br><br>1️⃣ Press <b>New</b>.<br>2️⃣ Enter the <b>Part Number</b> or select it from the LOV.<br>3️⃣ Select the <b>Supplier</b> from the LOV.<br>4️⃣ Enter the <b>Conversion Factor</b>.<br>5️⃣ Enter the <b>Price</b> and <b>Currency Code</b>.<br>6️⃣ Click <b>Save</b>.<br>7️⃣ To add more suppliers, <b>Duplicate</b> the record and change the Supplier and Price accordingly."
+      ]
+    },
+    {
+      "tag": "mpr_non_coded_parts",
+      "patterns": [
+        "how to create purchase requisition for non coded parts",
+        "mpr for capital items or services",
+        "no part purchase requisition process",
+        "create pr for non coded items",
+        "mpr process for no part"
+      ],
+      "responses": [
+        "To create a Purchase Requisition (MPR) for <b>Non-coded Parts</b> such as Capital Items or Services, follow the same process as a normal MPR.<br><br>🔸 The only difference is:<br>1️⃣ Navigate to the <b>No Part Requisition Lines</b> tab.<br>2️⃣ Enter the <b>Description</b> of the item to be purchased.<br>3️⃣ If the description is too long, go to <b>Operations → Text Processing</b> to enter full text.<br>4️⃣ Select the appropriate <b>Purchase Group</b> from the LOV.<br><br>✅ All other steps and approval processes remain the same as a standard (coded) Purchase Requisition."
+      ]
+    },
+    {
+      "tag": "mpr_approval_process",
+      "patterns": [
+        "mpr approval process",
+        "how to get approval for purchase requisition",
+        "purchase requisition approval steps",
+        "who approves mpr",
+        "how to take approval for mpr"
+      ],
+      "responses": [
+        "To get approval for a Purchase Requisition (MPR), follow this process:<br><br>✔️ Approval must be routed through the <b>eFile system</b>.<br>✔️ The process must comply with the <b>Delegation of Powers (DoP)</b> guidelines issued by the concerned CPAs like <b>MPC Level-I, II, or III</b>.<br>✔️ <b>Finance concurrence</b> is mandatory before releasing the Purchase Requisition.<br><br>📌 Always refer to the latest CPA/DoP circulars to ensure correct authority levels and routing."
+      ]
+    },
+    {
+      "tag": "mpr_release_process",
+      "patterns": [
+        "how to release purchase requisition",
+        "release mpr to purchase department",
+        "mpr release step",
+        "how to send mpr to purchase",
+        "mpr planned to released status"
+      ],
+      "responses": [
+        "To release a Purchase Requisition (MPR) after approval:<br><br>1️⃣ Ensure that approval is obtained from CPA (as per DoP).<br>2️⃣ Navigate to the MPR and <b>Right-Click (RMB)</b> on the header.<br>3️⃣ Select the <b>Release</b> option.<br><br>Once released, the MPR status will change from <b>'Planned'</b> to <b>'Released'</b>, and it becomes eligible for processing by the <b>Purchase Department</b>.<br><br>❗ Note: The user who created the MPR <b>cannot release it</b>. It must be released by another user (referred to as the <b>Checker</b>)."
+      ]
+    },
+    {
+      "tag": "mpr_edit_cancel",
+      "patterns": [
+        "how to cancel purchase requisition",
+        "mpr cancellation process",
+        "cancel pr",
+        "how to edit mpr",
+        "change purchase requisition after release",
+        "mpr modification",
+        "pr change steps"
+      ],
+      "responses": [
+        "Here’s how you can make changes or cancel a Purchase Requisition (MPR):<br><br><b>🔧 Editing an MPR:</b><br>✔️ You can only edit an MPR when it is in the <b>Planned</b> status.<br>✔️ If the MPR is already <b>Released</b>, first bring it back to <b>Planned</b> state by using the Unrelease option.<br>✔️ Then perform your edits and re-release it if required.<br><br><b>❌ Cancelling a Purchase Requisition:</b><br>✔️ To cancel the entire MPR, <b>Right-Click (RMB)</b> on the Header and select <b>Cancel Requisition</b>.<br>✔️ Once cancelled, the status changes to <b>Closed</b> and it cannot be reverted.<br>✔️ You may also cancel individual lines using RMB on the line, but note that the PR overall status will not change.<br><br>⚠️ Be cautious — cancelling is irreversible!"
+      ]
+    },
+    {
+      "tag": "mpr_status_check",
+      "patterns": [
+        "how to check purchase requisition status",
+        "mpr status check",
+        "check pr status",
+        "status of my requisition",
+        "how to view po or tender from mpr"
+      ],
+      "responses": [
+        "You can check the status of a Purchase Requisition (MPR) in the following ways:<br><br>📋 <b>Overview Screens:</b><br>✔️ Use the <b>Overview Purchase Requisition</b> and <b>Overview Purchase Requisition Lines</b> screens.<br>✔️ These show complete details of the MPR and each MPR Line.<br><br>📦 <b>Tender / PO Status:</b><br>✔️ Use the <b>Tender Status</b> or <b>PO Status</b> tabs to check if a Tender or Purchase Order has been created from the current MPR.<br><br>✅ These screens provide real-time tracking of your requisition's progress and linkage to procurement documents."
+      ]
+    },
+    {
+      "tag": "tender_enquiry",
+      "patterns": [
+        "what is tender enquiry",
+        "define tender enquiry",
+        "meaning of tender enquiry",
+        "tender enquiry in ifs",
+        "hal tender enquiry"
+      ],
+      "responses": [
+        "A <b>Tender Enquiry</b> is a document or electronic notification issued by HAL to potential suppliers through the <b>IFS system</b>, requesting them to submit offers or quotations for specific materials, equipment, or services."
+      ]
+    },
+    {
+      "tag": "tender_types",
+      "patterns": [
+        "types of tenders",
+        "different types of tenders",
+        "kinds of tenders",
+        "tender categories",
+        "hal tender types"
+      ],
+      "responses": [
+        "Here are the main types of Tenders used in procurement:<br><br>1️⃣ <b>Open Tender</b> – Invitation is open to all interested vendors. Most transparent and competitive method.<br>2️⃣ <b>Limited Tender</b> – Sent only to pre-qualified or registered vendors. Used for repeat purchases or trusted suppliers.<br>3️⃣ <b>Single Tender</b> – Only one vendor is invited. Used for proprietary or single-source items.<br>4️⃣ <b>Two-Bid System</b> – Vendors submit Technical and Financial bids separately. Technical evaluation is done before opening price bids.<br>5️⃣ <b>Global Tender</b> – Issued to international vendors for high-value or specialized imports.<br>6️⃣ <b>E-Tender</b> – Entire tendering process is conducted electronically (via IFS or e-Procurement portals).<br>7️⃣ <b>Proprietary Tender</b> – Used for patented or single-manufacturer items.<br>8️⃣ <b>Rate Contract Tender</b> – Used to fix rates for frequently purchased items over a time period.<br>9️⃣ <b>Expression of Interest (EOI)</b> – Initial step to shortlist interested vendors before the formal tender process."
+      ]
+    },
+    {
+      "tag": "tender_creation_process",
+      "patterns": [
+        "how to create tender",
+        "tender creation steps",
+        "tender entry process",
+        "tender entry screen steps",
+        "create a tender enquiry"
+      ],
+      "responses": [
+        "To create a Tender Enquiry, follow the steps below:<br><br><b>🔹 Navigation Path:</b> IFS Distribution → Purchasing → Tendering → Tender Entry screen<br><br><b>📋 Steps:</b><br>1️⃣ Press <b>New</b> button or <b>F5</b>.<br>2️⃣ Select the <b>Site</b> from where the tender is to be created.<br>3️⃣ Choose the <b>Tender Prefix</b> (e.g. requisition_no/HBK or HBS).<br>4️⃣ Select <b>Tender Mode</b> from LOV (e.g. Advertisement, Limited Tender).<br>5️⃣ Choose <b>Signing Authority</b>, <b>Authorizer</b>, and <b>Coordinator</b>.<br>6️⃣ Enter the <b>Effective Date</b> and <b>No. of Days</b> after which bids open.<br>7️⃣ Choose the <b>Currency</b> and conversion rate (1 for INR, foreign rates pulled on tender open date).<br>8️⃣ Bid Close/Open dates auto-populate from Basic Data for Tender screen.<br>9️⃣ Press <b>Save</b> — status becomes <b>Entered</b>.<br>🔟 RMB on Header → <b>Document Text</b> → add RFQ output types like RFQ TRM CO, RFQ-TC-PR1.<br>1️⃣1️⃣ RMB on <b>Details Tab</b> → <b>Select Purchase Requisition Lines</b>.<br>1️⃣2️⃣ In the MPR Lines popup, choose the correct PR number and press OK.<br>1️⃣3️⃣ Save the selected lines.<br>1️⃣4️⃣ RMB → <b>Select Vendors</b> → pick vendors from list or add manually.<br>1️⃣5️⃣ Press <b>Approve</b>, then <b>Issue</b> → status changes to <b>Issued</b>.<br><br>📤 RFQ is now sent to all selected suppliers."
+      ]
+    },
+    {
+      "tag": "tender_prerequisites",
+      "patterns": [
+        "pre requisites for tender",
+        "requirements before creating tender",
+        "what to do before tender enquiry",
+        "conditions for tender entry",
+        "initial setup for tender"
+      ],
+      "responses": [
+        "Before initiating a Tender Enquiry, ensure the following pre-requisites are met:<br><br>✔️ A <b>Purchase Requisition (PR)</b> must be created with <b>Order Code 0</b> (Tender).<br>✔️ <b>Basic Data for Tender Entry</b> must be properly defined in the system.<br><br>These steps ensure that the tendering process is aligned with system and policy requirements."
+      ]
+    },
+    {
+      "tag": "float_tender_enquiry",
+      "patterns": [
+        "how to float a tender",
+        "how to send tender enquiry",
+        "tender float steps",
+        "process to issue tender",
+        "steps to release tender enquiry"
+      ],
+      "responses": [
+        "To send or float a Tender Enquiry, follow these steps:<br><br>1️⃣ <b>Create a Purchase Requisition (PR) / Indent</b> – Ensure it's for the required item or service.<br>2️⃣ <b>Approve the Requisition</b> – The indent must be reviewed and approved by:<br> ✔️ <b>Technical Department</b> (to verify technical specs)<br> ✔️ <b>Finance</b> (for budget and funding concurrence)<br>3️⃣ <b>Create a Tender Enquiry</b> in the IFS system via the Tender Entry screen.<br>4️⃣ <b>Select Vendors</b> by using RMB → Select Vendors. You can include all connected vendors or add more.<br>5️⃣ <b>Attach Documents</b> (if required) like specs, terms, special instructions.<br>6️⃣ <b>Float / Send the Tender</b> by clicking <b>Approve</b> and then <b>Issue</b>.<br>7️⃣ <b>Monitor and Track Responses</b> through the Tender Status screens to follow up on vendor quotations.<br><br>✅ Once issued, the Tender is officially floated to selected vendors and open for response."
+      ]
+    },
+    {
+      "tag": "tender_bid",
+      "patterns": [
+        "what is a bid",
+        "define bid",
+        "tender bid meaning",
+        "bid in tender process",
+        "what does bid mean"
+      ],
+      "responses": [
+        "A <b>Bid</b> in a Tender process refers to the response submitted by a supplier/vendor against a Tender Enquiry. <br><br>Tender Bid terms include important information such as:<br>✔️ <b>Parts to be Supplied</b><br>✔️ <b>Delivery Terms</b><br>✔️ <b>Shipping Details</b><br>✔️ <b>Payment Terms</b><br><br>✅ It represents the supplier's official offer to fulfill the tendered requirement."
+      ]
+    },
+    {
+      "tag": "enter_tender_bids",
+      "patterns": [
+        "how to enter bids",
+        "receive tender bids",
+        "how to record vendor bid",
+        "enter bid in tender entry",
+        "steps to capture received bids"
+      ],
+      "responses": [
+        "To enter or record bids received from vendors against a Tender Enquiry:<br><br>1️⃣ Go to the <b>Tender Entry</b> screen in the IFS system.<br>2️⃣ <b>Right-click (RMB)</b> on the Header section.<br>3️⃣ Select the option <b>Bid Receive</b>.<br><br>✅ Once this is done, the status of the Tender will change to <b>'Bid Received'</b>, indicating that vendor responses have been captured in the system."
+      ]
+    },
+    {
+      "tag": "post_bid_evaluation",
+      "patterns": [
+        "what after bid received",
+        "next step after receiving bid",
+        "bid evaluation process",
+        "how to evaluate tender bids",
+        "post bid procedure"
+      ],
+      "responses": [
+        "After bids have been received from vendors, follow this process:<br><br>1️⃣ <b>Evaluate the Bids</b> – This includes:<br> ✔️ <b>Technical Evaluation</b> (manual review of specifications, capabilities, compliance)<br> ✔️ <b>Commercial Evaluation</b> (comparison of pricing, delivery, terms)<br><br>2️⃣ Once evaluation is complete, generate the <b>CST Report</b> (Comparative Statement of Tenders).<br>3️⃣ Based on the CST, the <b>L1 Supplier</b> (lowest technically acceptable bid) is identified.<br><br>✅ These evaluations ensure transparent and cost-effective procurement aligned with technical requirements."
+      ]
+    }
+  ]
+}

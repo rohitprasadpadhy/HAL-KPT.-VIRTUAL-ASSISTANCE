@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tender Chatbot</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f2f6ff, #d9f2e6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .chat-box {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 500px;
+      max-width: 90%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.4s ease-in-out;
+
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .messages {
+      height: 320px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      padding: 12px;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      margin-bottom: 15px;
+      scroll-behavior: smooth;
+    }
+
+    .messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .messages::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    .msg {
+      margin: 8px 0;
+      padding: 10px 14px;
+      border-radius: 12px;
+      line-height: 1.6;
+      font-size: 14px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .user {
+      background-color: #d0e7ff;
+      color: #003e7e;
+      align-self: flex-end;
+    }
+
+    .bot {
+      background-color: #d4f8d4;
+      color: #155724;
+      align-self: flex-start;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: #007bff;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .category-button {
+      background-color: #6f42c1;
+      margin-bottom: 10px;
+    }
+
+    .category-button:hover {
+      background-color: #5936a1;
+    }
+
+    .quick-button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #28a745;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+       transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .quick-button:hover {
+      background-color: #1e7e34;
+      transform: scale(1.02);
+    }
+     #quick-buttons {
+       display: flex;
+  gap: 10px;
+  margin-top: 15px;
+    }
+
+    .column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+  </style>
+</head>
+<body>
+  <div class="chat-box">
+    <div class="messages" id="chat">
+      <div class="msg bot">🤖 Hello! Choose the below option.</div>
+    </div>
+<!-- 
+    <div class="input-row">
+      <input type="text" id="input" placeholder="Type your question..." onkeypress="checkEnter(event)">
+      <button onclick="sendMsg()">Send</button>
+    </div> -->
+
+    <!-- Category Buttons -->
+    <button class="category-button" onclick="showCategory('pr')">📂 Purchase Requisition</button>
+    <button class="category-button" onclick="showCategory('tender')">📂 Tender</button>
+
+    <!-- Container for Quick Buttons -->
+    <div id="quick-buttons"></div>
+  </div>
+
+  <script>
+    
+    function appendMessage(msg, sender) {
+      const div = document.createElement("div");
+      div.className = "msg " + sender;
+      div.innerHTML = msg;
+      document.getElementById("chat").appendChild(div);
+      div.scrollIntoView();
+    }
+
+    function sendMsg(msgFromButton = null) {
+      const input = document.getElementById("input");
+      const msg = msgFromButton || input.value;
+
+      if (msg.trim() === "") return;
+      appendMessage(msg, "user");
+
+      if (!msgFromButton) input.value = "";
+
+      fetch("/get", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "msg=" + encodeURIComponent(msg)
+      })
+      .then(res => res.json())
+      .then(data => appendMessage(data.response, "bot"))
+      .catch(() => appendMessage("⚠️ Error contacting server", "bot"));
+    }
+
+    function checkEnter(e) {
+      if (e.key === "Enter") sendMsg();
+    }
+
+    // Category-wise questions
+    const quickCategories = {
+      pr: [
+        { text: "📝 What is Purchase Requisition?", msg: "what is purchase requisition" },
+        { text: "📝 Types of PR", msg: "types of purchase requisition" },
+        { text: "📝 How to Create PR", msg: "how to create purchase requisition" },
+        { text: "📝 PR for Non-Coded Parts", msg: "how to create purchase requisition for non coded parts" },
+        { text: "📝 Approval Steps", msg: "purchase requisition approval steps" },
+        { text: "📝 Release PR", msg: "how to release purchase requisition" },
+        { text: "📝 Cancel PR", msg: "how to cancel purchase requisition" },
+        { text: "📝 Check PR Status", msg: "how to check purchase requisition status" },
+        { text: "📝 Create Supplier", msg: "how to create supplier for purchase part" },
+        { text: "📝 Create Inventory Part", msg: "steps to create inventory part" }
+      ],
+      tender: [
+        { text: "📄 What is Tender Enquiry?", msg: "what is tender enquiry" },
+        { text: "📄 Types of Tenders", msg: "types of tenders" },
+        { text: "📄 How to Create Tender", msg: "how to create tender" },
+        { text: "📄 Tender Prerequisites", msg: "pre requisites for tender" },
+        { text: "📄 Send Tender Enquiry", msg: "how to send tender enquiry" },
+        { text: "📄 What is a Bid?", msg: "what is a bid" },
+        { text: "📄 Record Vendor Bid", msg: "how to record vendor bid" },
+        { text: "📄 Next Step After Bid", msg: "next step after receiving bid" }
+      ]
+    };
+
+    // function showCategory(categoryKey) {
+    //   const container = document.getElementById("quick-buttons");
+    //   container.innerHTML = "";
+
+    //   quickCategories[categoryKey].forEach(item => {
+    //     const btn = document.createElement("button");
+    //     btn.className = "quick-button";
+    //     btn.textContent = item.text;
+    //     btn.onclick = () => sendMsg(item.msg);
+    //     container.appendChild(btn);
+    //   });
+   // }
+   function showCategory(categoryKey) {
+  const container = document.getElementById("quick-buttons");
+  container.innerHTML = ""; // Clear previous buttons
+
+  const items = quickCategories[categoryKey];
+  
+  // Split into two columns: first 4 in left, next 4 in right
+  const leftItems = items.slice(0, 4);
+  const rightItems = items.slice(4, 8); // Only next 4
+
+  const leftCol = document.createElement("div");
+  leftCol.className = "column";
+
+  const rightCol = document.createElement("div");
+  rightCol.className = "column";
+
+  leftItems.forEach(item => {
+    const btn = document.createElement("button");
+    btn.className = "quick-button";
+    btn.textContent = item.text;
+    btn.onclick = () => sendMsg(item.msg);
+    leftCol.appendChild(btn);
+  });
+
+  rightItems.forEach(item => {
+    const btn = document.createElement("button");
+    btn.className = "quick-button";
+    btn.textContent = item.text;
+    btn.onclick = () => sendMsg(item.msg);
+    rightCol.appendChild(btn);
+  });
+
+  container.appendChild(leftCol);
+  container.appendChild(rightCol);
+}
+
+  </script>
+  
+</body>
+</html>
+<!-- Robot Animation on Load -->
